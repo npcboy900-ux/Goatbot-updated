@@ -13,46 +13,48 @@ module.exports = {
 	config: {
 		name: "event",
 		version: "1.9",
-		author: "NTKhang",
+		author: "NEVELOP SIZE56",
 		countDown: 5,
 		role: 2,
 		description: {
-			vi: "Quản lý các tệp lệnh event của bạn",
+			th: "จัดการไฟล์ event ของคุณ",
 			en: "Manage your event command files"
 		},
-		category: "owner",
+		category: "เจ้าของบอท",
 		guide: {
-			vi: "{pn} load <tên file lệnh>"
-				+ "\n{pn} loadAll"
-				+ "\n{pn} install <url> <tên file lệnh>: Tải về và load command event, url là đường dẫn tới file lệnh (raw)"
-				+ "\n{pn} install <code> <tên file lệnh>: Tải về và load command event, code là mã của file lệnh (raw)",
-			en: "{pn} load <command file name>"
-				+ "\n{pn} loadAll"
-				+ "\n{pn} install <url> <command file name>: Download and load event command, url is the path to the command file (raw)"
-				+ "\n{pn} install <code> <command file name>: Download and load event command, code is the code of the command file (raw)"
+			th:
+				"{pn} load <ชื่อไฟล์คำสั่ง>\n" +
+				"{pn} loadAll\n" +
+				"{pn} install <url> <ชื่อไฟล์คำสั่ง>: ดาวน์โหลดและโหลดไฟล์ event จากลิงก์ (raw)\n" +
+				"{pn} install <code> <ชื่อไฟล์คำสั่ง>: ดาวน์โหลดและโหลดไฟล์ event จากโค้ด (raw)",
+			en:
+				"{pn} load <command file name>\n" +
+				"{pn} loadAll\n" +
+				"{pn} install <url> <command file name>: Download and load event command, url is the path to the command file (raw)\n" +
+				"{pn} install <code> <command file name>: Download and load event command, code is the code of the command file (raw)"
 		}
 	},
 
 	langs: {
-		vi: {
-			missingFileName: "⚠️ | Vui lòng nhập vào tên lệnh bạn muốn reload",
-			loaded: "✅ | Đã load event command \"%1\" thành công",
-			loadedError: "❌ | Load event command \"%1\" thất bại với lỗi\n%2: %3",
-			loadedSuccess: "✅ | Đã load thành công \"%1\" event command",
-			loadedFail: "❌ | Load thất bại event command \"%1\"\n%2",
-			missingCommandNameUnload: "⚠️ | Vui lòng nhập vào tên lệnh bạn muốn unload",
-			unloaded: "✅ | Đã unload event command \"%1\" thành công",
-			unloadedError: "❌ | Unload event command \"%1\" thất bại với lỗi\n%2: %3",
-			missingUrlCodeOrFileName: "⚠️ | Vui lòng nhập vào url hoặc code và tên file lệnh bạn muốn cài đặt",
-			missingUrlOrCode: "⚠️ | Vui lòng nhập vào url hoặc code của tệp lệnh bạn muốn cài đặt",
-			missingFileNameInstall: "⚠️ | Vui lòng nhập vào tên file để lưu lệnh (đuôi .js)",
-			invalidUrlOrCode: "⚠️ | Không thể lấy được mã lệnh",
-			alreadExist: "⚠️ | File lệnh đã tồn tại, bạn có chắc chắn muốn ghi đè lên file lệnh cũ không?\nThả cảm xúc bất kì vào tin nhắn này để tiếp tục",
-			installed: "✅ | Đã cài đặt event command \"%1\" thành công, file lệnh được lưu tại %2",
-			installedError: "❌ | Cài đặt event command \"%1\" thất bại với lỗi\n%2: %3",
-			missingFile: "⚠️ | Không tìm thấy tệp lệnh \"%1\"",
-			invalidFileName: "⚠️ | Tên tệp lệnh không hợp lệ",
-			unloadedFile: "✅ | Đã unload lệnh \"%1\""
+		th: {
+			missingFileName: "⚠️ | โปรดระบุชื่อไฟล์ที่ต้องการโหลดใหม่",
+			loaded: "✅ | โหลดไฟล์ event \"%1\" สำเร็จแล้ว",
+			loadedError: "❌ | โหลดไฟล์ event \"%1\" ล้มเหลว\n%2: %3",
+			loadedSuccess: "✅ | โหลดไฟล์ event \"%1\" ทั้งหมดสำเร็จแล้ว",
+			loadedFail: "❌ | โหลดไฟล์ event \"%1\" ล้มเหลว\n%2",
+			missingCommandNameUnload: "⚠️ | โปรดระบุชื่อไฟล์ที่ต้องการปิดการทำงาน",
+			unloaded: "✅ | ปิดการทำงานไฟล์ event \"%1\" สำเร็จแล้ว",
+			unloadedError: "❌ | ปิดการทำงานไฟล์ event \"%1\" ล้มเหลว\n%2: %3",
+			missingUrlCodeOrFileName: "⚠️ | โปรดระบุ url หรือ code และชื่อไฟล์ที่ต้องการติดตั้ง",
+			missingUrlOrCode: "⚠️ | โปรดระบุ url หรือ code ของไฟล์ที่ต้องการติดตั้ง",
+			missingFileNameInstall: "⚠️ | โปรดระบุชื่อไฟล์ (ต้องลงท้ายด้วย .js)",
+			invalidUrlOrCode: "⚠️ | ไม่สามารถดึงโค้ดของไฟล์ได้",
+			alreadExist: "⚠️ | ไฟล์นี้มีอยู่แล้ว ต้องการเขียนทับหรือไม่?\nกดอีโมจิใดๆ เพื่อตกลง",
+			installed: "✅ | ติดตั้งไฟล์ event \"%1\" สำเร็จแล้ว, บันทึกไว้ที่ %2",
+			installedError: "❌ | ติดตั้งไฟล์ event \"%1\" ล้มเหลว\n%2: %3",
+			missingFile: "⚠️ | ไม่พบไฟล์ \"%1\"",
+			invalidFileName: "⚠️ | ชื่อไฟล์ไม่ถูกต้อง",
+			unloadedFile: "✅ | ปิดการทำงานไฟล์ \"%1\" สำเร็จแล้ว"
 		},
 		en: {
 			missingFileName: "⚠️ | Please enter the command name you want to reload",
