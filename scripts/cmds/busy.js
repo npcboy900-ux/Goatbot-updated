@@ -4,7 +4,7 @@ module.exports = {
 		version: "1.0",
 		author: "NTKhang",
 		countDown: 5,
-		role: 2,
+		role: 0,
 		description: {
 			en: "Change the group name multiple times with numbering"
 		},
