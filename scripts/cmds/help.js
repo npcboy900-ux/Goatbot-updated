@@ -7,11 +7,11 @@ module.exports = {
 		name: "help",
 		aliases: ["menu", "commands"],
 		version: "4.8",
-		author: "NeoKEX",
-		shortDescription: "Show all available commands",
-		longDescription: "Displays a clean and premium-styled categorized list of commands.",
+		author: "NEVELOP SIZE56",
+		shortDescription: "แสดงคำสั่งทั้งหมดที่มีอยู่",
+		longDescription: "แสดงรายการคำสั่งทั้งหมดอย่างเป็นหมวดหมู่ในรูปแบบที่สวยงามและพรีเมียม",
 		category: "system",
-		guide: "{pn}help [command name]"
+		guide: "{pn}help [ชื่อคำสั่ง]"
 	},
 
 	onStart: async function ({ message, args, prefix }) {
@@ -36,14 +36,14 @@ module.exports = {
 				.toLowerCase();
 		};
 
-		// Group commands by category
+		// จัดกลุ่มคำสั่งตามหมวดหมู่
 		for (const [name, cmd] of allCommands) {
 			const cat = cleanCategoryName(cmd.config.category);
 			if (!categories[cat]) categories[cat] = [];
 			categories[cat].push(cmd.config.name);
 		}
 
-		// GIF URLs
+		// ลิงก์ GIF
 		const gifURLs = [
 			"https://i.imgur.com/ejqdK51.gif",
 			"https://i.imgur.com/ltIztKe.gif",
@@ -55,25 +55,25 @@ module.exports = {
 			"https://i.imgur.com/Ih819LH.gif"
 		];
 
-		// pick random gif
+		// เลือก GIF แบบสุ่ม
 		const randomGifURL = gifURLs[Math.floor(Math.random() * gifURLs.length)];
 		const gifFolder = path.join(__dirname, "cache");
 		if (!fs.existsSync(gifFolder)) fs.mkdirSync(gifFolder, { recursive: true });
 		const gifName = path.basename(randomGifURL);
 		const gifPath = path.join(gifFolder, gifName);
 
-		// download if not exists
+		// ดาวน์โหลดถ้ายังไม่มี
 		if (!fs.existsSync(gifPath)) {
 			await downloadGif(randomGifURL, gifPath);
 		}
 
-		// Single command detail
+		// แสดงรายละเอียดคำสั่งเดียว
 		if (args[0]) {
 			const query = args[0].toLowerCase();
 			const cmd =
 				allCommands.get(query) ||
 				[...allCommands.values()].find((c) => (c.config.aliases || []).includes(query));
-			if (!cmd) return message.reply(`❌ Command "${query}" not found.`);
+			if (!cmd) return message.reply(`❌ ไม่พบคำสั่ง "${query}"`);
 
 			const {
 				name,
@@ -89,39 +89,39 @@ module.exports = {
 			const desc =
 				typeof longDescription === "string"
 					? longDescription
-					: longDescription?.en || shortDescription?.en || shortDescription || "No description";
+					: longDescription?.th || shortDescription?.th || shortDescription || "ไม่มีคำอธิบาย";
 
 			const usage =
 				typeof guide === "string"
 					? guide.replace(/{pn}/g, prefix)
-					: guide?.en?.replace(/{pn}/g, prefix) || `${prefix}${name}`;
+					: guide?.th?.replace(/{pn}/g, prefix) || `${prefix}${name}`;
 
 			return message.reply({
 				body:
-					`☠️ 𝗖𝗢𝗠𝗠𝗔𝗡𝗗 𝗜𝗡𝗙𝗢 ☠️\n\n` +
-					`➥ Name: ${name}\n` +
-					`➥ Category: ${category || "Uncategorized"}\n` +
-					`➥ Description: ${desc}\n` +
-					`➥ Aliases: ${aliases?.length ? aliases.join(", ") : "None"}\n` +
-					`➥ Usage: ${usage}\n` +
-					`➥ Author: ${author || "Unknown"}\n` +
-					`➥ Version: ${version || "1.0"}`,
+					`☠️ 𝗪𝗜𝗗𝗘𝗧 𝗞𝗔𝗠𝗦𝗔𝗡𝗚 ☠️\n\n` +
+					`➥ ชื่อคำสั่ง: ${name}\n` +
+					`➥ หมวดหมู่: ${category || "ไม่ระบุ"}\n` +
+					`➥ รายละเอียด: ${desc}\n` +
+					`➥ คำสั่งย่อ: ${aliases?.length ? aliases.join(", ") : "ไม่มี"}\n` +
+					`➥ วิธีใช้: ${usage}\n` +
+					`➥ ผู้สร้าง: ${author || "ไม่ทราบ"}\n` +
+					`➥ เวอร์ชัน: ${version || "1.0"}`,
 				attachment: fs.createReadStream(gifPath)
 			});
 		}
 
-		// Format all commands
+		// แสดงรายการคำสั่งทั้งหมด
 		const formatCommands = (cmds) =>
 			cmds.sort().map((cmd) => `│ ∘ ${cmd}`).join("\n");
 
-		let msg = `╭━ 🎯 𝑪𝑶𝑴𝑴𝑨𝑵𝑫𝑺 ━╮\n`;
+		let msg = `╭━ 🎯 𝑳𝑰𝑺𝑻 𝑲𝑨𝑴𝑺𝑨𝗡𝗚 ━╮\n`;
 		const sortedCategories = Object.keys(categories).sort();
 		for (const cat of sortedCategories) {
 			const emoji = emojiMap[cat] || "➥";
 			msg += `\n${emoji} ${cat.toUpperCase()}\n`;
 			msg += `${formatCommands(categories[cat])}\n`;
 		}
-		msg += `\n╰➤ Use: ${prefix}help [command name] for details`;
+		msg += `\n╰➤ ใช้: ${prefix}help [ชื่อคำสั่ง] เพื่อดูรายละเอียดเพิ่มเติม`;
 
 		return message.reply({
 			body: msg,
@@ -130,14 +130,14 @@ module.exports = {
 	}
 };
 
-// helper to download GIF
+// ฟังก์ชันช่วยดาวน์โหลด GIF
 function downloadGif(url, dest) {
 	return new Promise((resolve, reject) => {
 		const file = fs.createWriteStream(dest);
 		https.get(url, (res) => {
 			if (res.statusCode !== 200) {
 				fs.unlink(dest, () => {});
-				return reject(new Error(`Failed to download '${url}' (${res.statusCode})`));
+				return reject(new Error(`ดาวน์โหลดล้มเหลว '${url}' (${res.statusCode})`));
 			}
 			res.pipe(file);
 			file.on("finish", () => file.close(resolve));
